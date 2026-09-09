@@ -14,6 +14,21 @@ class StoreTests(unittest.TestCase):
     def test_apply_discount(self):
         self.assertEqual(apply_discount(1000, 10), 900.0)
 
+    # Test cases for apply discount, percentage should be between 0 and 100
+    def test_apply_discount_with_negative_discount(self):
+        with self.assertRaises(ValueError):
+            apply_discount(1000, -10)
+
+    def test_apply_discount_with_zero_discount(self):
+        self.assertEqual(apply_discount(1000, 0), 1000.0)
+
+    def test_apply_discount_with_discount_over_100(self):
+        with self.assertRaises(ValueError):
+            apply_discount(1000, 110)
+
+    def test_apply_discount_with_discount_equal_100(self):
+        self.assertEqual(apply_discount(1000, 100), 0.0)
+
     def test_checkout_with_items(self):
         self.assertTrue(can_checkout(1))
         self.assertTrue(can_checkout(25))
