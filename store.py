@@ -14,7 +14,7 @@ def apply_discount(subtotal, percent):
 
 
 def can_checkout(item_count):
-    return 1 < item_count <= 50
+    return 1 <= item_count <= 50
 
 
 def loyalty_discount(points):
