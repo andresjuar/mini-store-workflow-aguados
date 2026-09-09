@@ -18,6 +18,7 @@ def can_checkout(item_count):
 
 
 def loyalty_discount(points):
+    #This feature returns 0% below 500 points, 5% from 500–999, and 10% at 1000+ points.
     if points < 0:
         raise ValueError("points must be >= 0")
     if points < 500:
