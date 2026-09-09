@@ -17,8 +17,24 @@ class StoreTests(unittest.TestCase):
     def test_checkout_with_items(self):
         self.assertTrue(can_checkout(1))
 
-    def test_loyalty_starts_at_zero(self):
-        self.assertEqual(loyalty_discount(0), 0)
+    def test_loyalty_negative_points(self):
+        with self.assertRaises(ValueError):
+            loyalty_discount(-1)
+
+    def test_loyalty_below_500(self):
+        self.assertEqual(loyalty_discount(499), 0)
+
+    def test_loyalty_at_500(self):
+        self.assertEqual(loyalty_discount(500), 10)
+
+    def test_loyalty_between_500_and_999(self):
+        self.assertEqual(loyalty_discount(750), 5)
+
+    def test_loyalty_at_999(self):
+        self.assertEqual(loyalty_discount(999), 5)
+
+    def test_loyalty_at_1000(self):
+        self.assertEqual(loyalty_discount(1000), 10)
 
 
 if __name__ == "__main__":

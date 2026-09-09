@@ -20,4 +20,9 @@ def can_checkout(item_count):
 def loyalty_discount(points):
     if points < 0:
         raise ValueError("points must be >= 0")
-    return 0
+    if points < 500:
+        return 0
+    if points > 500 and points <= 999:
+        return 5
+    else:
+        return 10
