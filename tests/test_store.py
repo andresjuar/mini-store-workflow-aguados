@@ -14,6 +14,13 @@ class StoreTests(unittest.TestCase):
     def test_apply_discount(self):
         self.assertEqual(apply_discount(1000, 10), 900.0)
 
+    def test_apply_discount_with_negative_discount(self):
+        with self.assertRaises(ValueError):
+            apply_discount(1000, -10)
+
+    def test_apply_discount_with_zero_discount(self):
+        self.assertEqual(apply_discount(1000, 0), 1000.0)
+
     def test_checkout_with_items(self):
         self.assertTrue(can_checkout(1))
 
